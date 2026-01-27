@@ -6,7 +6,7 @@ function ParentCounter() {
 
   return (
     <div>
-      <h2>Context API Working</h2>
+      <h3>Global State (ContextAPI) Count</h3>
       <h3>Count: {count}</h3>
 
       <button onClick={() => setCount(count + 1)}>
