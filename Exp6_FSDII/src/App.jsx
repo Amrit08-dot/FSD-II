@@ -1,15 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from 'Form.jsx'
+import { useState } from 'react';
+import './App.css';
+import Form from './components/Form';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle('dark');
+  };
 
   return (
-    <Form/>
-  )
+    <div className="card">
+      <button className="theme-btn" onClick={toggleTheme}>
+        {darkMode ? 'Light Mode ☀️' : 'Dark Mode 🌙'}
+      </button>
+
+      <Form />
+    </div>
+  );
 }
 
-export default App
+export default App;
