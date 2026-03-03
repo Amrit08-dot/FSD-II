@@ -1,4 +1,4 @@
-## Experiment No. 8 - Develop RESTful APIs using Backend Framework (Flask)
+## Experiment No. 9 - Implement authentication using JWT
 
 ## Project Structure
 
