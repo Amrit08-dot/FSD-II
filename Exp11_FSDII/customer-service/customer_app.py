@@ -19,7 +19,7 @@ def get_account_details(user_id):
     # Call Order Service
     try:
         response = requests.get(
-            f"http://localhost:5002/orders/user/{user_id}",
+            f"https://fsd-2-backend-7736.onrender.com",
             timeout=3
         )
 
