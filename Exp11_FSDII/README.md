@@ -76,7 +76,7 @@ def get_account_details(user_id):
 
     try:
         response = requests.get(
-            f"https://two3bis70035-experiment-11-order.onrender.com/orders/user/{user_id}",
+            f"https://two3bis70062exp11fsd2.onrender.com/orders/user/{user_id}",
             timeout=3
         )
 
