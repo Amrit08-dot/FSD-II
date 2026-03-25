@@ -178,8 +178,8 @@ if __name__ == "__main__":
 
 ## Deployment Links
 
-- Customer Service: https://two3bis70035-experiment-11-customer.onrender.com
-- Order Service: https://two3bis70035-experiment-11-order.onrender.com
+- Customer Service: https://two3bis70062exp11fsd2.onrender.com/
+- Order Service: https://fsd-2-backend-7736.onrender.com/
 
 ## Working Flow
 
