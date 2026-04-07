@@ -56,7 +56,6 @@ cd student-api
 
 ```
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
 ```
 
@@ -107,6 +106,10 @@ https://two3bis70062-experiment-13.onrender.com/
 - **UID:** Minimum 3 characters, unique
 
 ---
+
+## Database
+
+![Customer Service](Screenshots/7.png)
 
 ## ⚠️ Error Handling
 
