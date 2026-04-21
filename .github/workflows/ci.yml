@@ -1,9 +1,12 @@
-name: Fullstack Tests
+name: Experiment 16 Tests
 
 on:
   push:
     branches: [main]
   pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   backend-test:
@@ -11,11 +14,10 @@ jobs:
 
     defaults:
       run:
-        working-directory: Testing/Backend
-
+        working-directory: Testing_FSDII/Exp16_FSDII_Backend
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -33,24 +35,24 @@ jobs:
           source venv/bin/activate
           pytest
 
-  # frontend-test:
-  #   runs-on: ubuntu-latest
+  frontend-test:
+    runs-on: ubuntu-latest
 
-  #   defaults:
-  #     run:
-  #       working-directory: Testing/Frontend
+    defaults:
+      run:
+        working-directory: Testing_FSDII/Exp16_FSDII_Frontend
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Run frontend tests
-  #       run: npm run test -- --run
+      - name: Run frontend tests
+        run: npm run test -- --run
