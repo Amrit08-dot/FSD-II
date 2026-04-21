@@ -86,7 +86,7 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
-          context: Testing/Experiment_20/backend
+          context: Exp20_FSDII/backend
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/fsd2-experiment20-backend:latest
@@ -109,8 +109,8 @@ jobs:
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
-          context: Testing/Experiment_20/frontend
-          file: Testing/Experiment_20/frontend/Dockerfile
+          context: Exp20_FSDII/frontend
+          file: Exp20_FSDII/frontend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/fsd2-experiment20-frontend:latest
@@ -138,11 +138,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Pull latest images
-        working-directory: Testing/Experiment_20
+        working-directory: Exp20_FSDII
         run: docker compose pull backend frontend
 
       - name: Start all services
-        working-directory: Testing/Experiment_20
+        working-directory: Exp20_FSDII
         run: docker compose up -d
 
       - name: Wait for backend to be healthy
@@ -174,5 +174,5 @@ jobs:
 
       - name: Show logs on failure
         if: failure()
-        working-directory: Testing/Experiment_20
+        working-directory: Exp20_FSDII
         run: docker compose logs
