@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Testing/Experiment_20/backend
+        working-directory: Exp20_FSDII/backend
 
     env:
       TESTING: "1"
@@ -48,7 +48,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Testing/Experiment_20/frontend
+        working-directory: Exp20_FSDII/frontend
 
     steps:
       - name: Checkout code
