@@ -29,17 +29,17 @@ To implement a complete CI/CD pipeline for a full-stack application (React + Fla
 
 ## Tools Used
 
-| Tool | Purpose |
-|---|---|
-| **Docker** | Containerize backend and frontend applications |
+| Tool               | Purpose                                                 |
+| ------------------ | ------------------------------------------------------- |
+| **Docker**         | Containerize backend and frontend applications          |
 | **Docker Compose** | Orchestrate multiple containers (db, backend, frontend) |
-| **GitHub Actions** | Automate CI/CD pipeline on every push |
-| **Docker Hub** | Store and distribute Docker images |
-| **Flask (Python)** | Backend REST API |
-| **React + Vite** | Frontend single-page application |
-| **MySQL 8** | Relational database |
-| **pytest** | Backend unit testing |
-| **Vitest** | Frontend unit testing |
+| **GitHub Actions** | Automate CI/CD pipeline on every push                   |
+| **Docker Hub**     | Store and distribute Docker images                      |
+| **Flask (Python)** | Backend REST API                                        |
+| **React + Vite**   | Frontend single-page application                        |
+| **MySQL 8**        | Relational database                                     |
+| **pytest**         | Backend unit testing                                    |
+| **Vitest**         | Frontend unit testing                                   |
 
 ---
 
@@ -70,56 +70,62 @@ Experiment_20/
 ## Commands Reference
 
 ### Docker – Image Commands
-| Command | Description |
-|---|---|
+
+| Command                         | Description                            |
+| ------------------------------- | -------------------------------------- |
 | `docker build -t <name> <path>` | Build a Docker image from a Dockerfile |
-| `docker images` | List all locally available images |
-| `docker rmi <name>` | Remove a Docker image |
-| `docker pull <image>` | Pull an image from Docker Hub |
-| `docker push <name>` | Push a local image to Docker Hub |
+| `docker images`                 | List all locally available images      |
+| `docker rmi <name>`             | Remove a Docker image                  |
+| `docker pull <image>`           | Pull an image from Docker Hub          |
+| `docker push <name>`            | Push a local image to Docker Hub       |
 
 ### Docker – Container Commands
-| Command | Description |
-|---|---|
-| `docker run -d --name <name> <image>` | Run a container in detached mode |
-| `docker run -p <host>:<container>` | Map host port to container port |
-| `docker run -e KEY=VALUE` | Set environment variable in container |
-| `docker run --network <name>` | Connect container to a network |
-| `docker ps` | List running containers |
-| `docker ps -a` | List all containers including stopped |
-| `docker logs <name>` | View container logs |
-| `docker rm -f <name>` | Force remove a container |
+
+| Command                               | Description                           |
+| ------------------------------------- | ------------------------------------- |
+| `docker run -d --name <name> <image>` | Run a container in detached mode      |
+| `docker run -p <host>:<container>`    | Map host port to container port       |
+| `docker run -e KEY=VALUE`             | Set environment variable in container |
+| `docker run --network <name>`         | Connect container to a network        |
+| `docker ps`                           | List running containers               |
+| `docker ps -a`                        | List all containers including stopped |
+| `docker logs <name>`                  | View container logs                   |
+| `docker rm -f <name>`                 | Force remove a container              |
 
 ### Docker – Network Commands
-| Command | Description |
-|---|---|
+
+| Command                        | Description                    |
+| ------------------------------ | ------------------------------ |
 | `docker network create <name>` | Create a custom bridge network |
-| `docker network rm <name>` | Remove a network |
+| `docker network rm <name>`     | Remove a network               |
 
 ### Docker – Login Commands
-| Command | Description |
-|---|---|
-| `docker login` | Log in to Docker Hub |
+
+| Command         | Description           |
+| --------------- | --------------------- |
+| `docker login`  | Log in to Docker Hub  |
 | `docker logout` | Log out of Docker Hub |
 
 ### Docker Compose Commands
-| Command | Description |
-|---|---|
-| `docker compose up` | Start all services defined in docker-compose.yml |
-| `docker compose up --build` | Build images then start all services |
-| `docker compose up -d` | Start all services in detached (background) mode |
-| `docker compose down` | Stop and remove all containers |
-| `docker compose down -v` | Stop containers and delete volumes (database data) |
-| `docker compose pull` | Pull latest images from registry |
-| `docker compose logs` | Show logs from all services |
-| `docker compose ps` | List containers managed by Compose |
+
+| Command                     | Description                                        |
+| --------------------------- | -------------------------------------------------- |
+| `docker compose up`         | Start all services defined in docker-compose.yml   |
+| `docker compose up --build` | Build images then start all services               |
+| `docker compose up -d`      | Start all services in detached (background) mode   |
+| `docker compose down`       | Stop and remove all containers                     |
+| `docker compose down -v`    | Stop containers and delete volumes (database data) |
+| `docker compose pull`       | Pull latest images from registry                   |
+| `docker compose logs`       | Show logs from all services                        |
+| `docker compose ps`         | List containers managed by Compose                 |
 
 ### Git Commands
-| Command | Description |
-|---|---|
-| `git add .` | Stage all changes |
-| `git commit -m "message"` | Commit staged changes |
-| `git push` | Push to GitHub (triggers the CI/CD pipeline) |
+
+| Command                   | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `git add .`               | Stage all changes                            |
+| `git commit -m "message"` | Commit staged changes                        |
+| `git push`                | Push to GitHub (triggers the CI/CD pipeline) |
 
 ---
 
@@ -128,11 +134,13 @@ Experiment_20/
 ### Step 1 – Write Dockerfiles
 
 **Backend Dockerfile** (`backend/Dockerfile`):
+
 - Uses `python:3.10` base image
 - Copies source code and installs dependencies from `requirements.txt`
 - Runs `python app.py` on start
 
 **Frontend Dockerfile** (`frontend/Dockerfile`):
+
 - Uses `node:20` base image
 - Installs npm dependencies, builds the Vite app
 - Serves the production build via `npm run preview`
@@ -145,8 +153,8 @@ The `docker-compose.yml` defines 3 services connected on an internal Docker netw
 
 ```yaml
 services:
-  db:       # MySQL 8 database
-  backend:  # Flask API — depends on db
+  db: # MySQL 8 database
+  backend: # Flask API — depends on db
   frontend: # React app — depends on backend
 ```
 
@@ -166,15 +174,15 @@ docker images
 
 **Building backend image:**
 
-![Build Backend](./Screenshots/Screenshot%202026-04-21%20205724.png)
+![Build Backend](./Screenshots/dcker_backend.png)
 
 **Building frontend image:**
 
-![Build Frontend](./Screenshots/Screenshot%202026-04-21%20205737.png)
+![Build Frontend](./Screenshots/docker_frontend.png)
 
 **Both images listed:**
 
-![Docker Images](./Screenshots/Screenshot%202026-04-21%20205816.png)
+![Docker Images](./Screenshots/docker_images.png)
 
 ---
 
@@ -203,21 +211,17 @@ docker ps
 
 **Creating network and pulling MySQL:**
 
-![Network and MySQL](./Screenshots/Screenshot%202026-04-21%20205900.png)
+![Network and MySQL](./Screenshots/creatingNetwork_AndSQLPULL.png)
 
-![MySQL Pull](./Screenshots/Screenshot%202026-04-21%20210212.png)
-
-**Starting backend and frontend containers:**
-
-![Run Containers](./Screenshots/Screenshot%202026-04-21%20210427.png)
+![MySQL Pull](./Screenshots/MySQL.png)
 
 **All 3 containers running:**
 
-![Docker PS](./Screenshots/Screenshot%202026-04-21%20210453.png)
+![Docker PS](./Screenshots/All_3_running.png)
 
 **Application running in browser (Register successful):**
 
-![App Running](./Screenshots/Screenshot%202026-04-21%20210526.png)
+![App Running](./Screenshots/Sregistered_docker.png)
 
 ---
 
@@ -232,6 +236,7 @@ docker compose up --build
 ```
 
 Compose automatically:
+
 1. Builds both images from their Dockerfiles
 2. Pulls `mysql:8`
 3. Creates an internal network
@@ -239,15 +244,15 @@ Compose automatically:
 
 **Docker Compose build output:**
 
-![Compose Build](./Screenshots/Screenshot%202026-04-21%20210624.png)
+![Compose Build](./Screenshots/Buildingthem.png)
 
 **All services started by Compose:**
 
-![Compose Up](./Screenshots/Screenshot%202026-04-21%20210636.png)
+![Compose Up](./Screenshots/composebuild.png)
 
 **Docker Compose logs — MySQL and Flask backend running:**
 
-![Compose Logs](./Screenshots/Screenshot%202026-04-21%20213010.png)
+![Compose Logs](./Screenshots/logs.png)
 
 ---
 
@@ -255,11 +260,11 @@ Compose automatically:
 
 **Create a Docker Hub access token** for secure authentication from GitHub Actions:
 
-![Docker Hub Token](./Screenshots/Screenshot%202026-04-21%20210907.png)
+![Docker Hub Token](./Screenshots/token.png)
 
 **Add secrets to GitHub repository** — `DOCKER_USERNAME` and `DOCKER_PASSWORD`:
 
-![GitHub Secrets](./Screenshots/Screenshot%202026-04-21%20210959.png)
+![GitHub Secrets](./Screenshots/githubsecrets.png)
 
 ---
 
@@ -268,14 +273,17 @@ Compose automatically:
 The pipeline (`exp20.yml`) has 3 stages triggered automatically on every `git push` to `main`:
 
 #### Stage 1 – CI (Testing)
+
 - `backend-test` — Spins up a real MySQL service container, installs Python deps, runs `pytest`
 - `frontend-test` — Installs Node deps, runs `vitest`
 
 #### Stage 2 – CD (Build & Push)
+
 - `backend-docker` — Builds backend image and pushes to Docker Hub (only if tests pass)
 - `frontend-docker` — Builds frontend image and pushes to Docker Hub (only if tests pass)
 
 #### Stage 3 – Deploy
+
 - Pulls latest images from Docker Hub
 - Runs `docker compose up -d` to start all 3 services
 - Waits for backend health check on port 5000
@@ -283,31 +291,31 @@ The pipeline (`exp20.yml`) has 3 stages triggered automatically on every `git pu
 
 **backend-test job passed:**
 
-![Backend Test](./Screenshots/Screenshot%202026-04-21%20211025.png)
+![Backend Test](./Screenshots/backend_test_git.png)
 
 **frontend-test job passed:**
 
-![Frontend Test](./Screenshots/Screenshot%202026-04-21%20211038.png)
+![Frontend Test](./Screenshots/frontend_test.png)
 
 **backend-docker job passed (image pushed to Docker Hub):**
 
-![Backend Docker](./Screenshots/Screenshot%202026-04-21%20211046.png)
+![Backend Docker](./Screenshots/backend_github.png)
 
 **frontend-docker job passed (image pushed to Docker Hub):**
 
-![Frontend Docker](./Screenshots/Screenshot%202026-04-21%20211055.png)
+![Frontend Docker](./Screenshots/frontend_github.png)
 
 **deploy job passed (smoke test successful):**
 
-![Deploy](./Screenshots/Screenshot%202026-04-21%20211111.png)
+![Deploy](./Screenshots/deploy.png)
 
 **Full pipeline summary — all 5 jobs green:**
 
-![Pipeline Summary](./Screenshots/Screenshot%202026-04-21%20211132.png)
+![Pipeline Summary](./Screenshots/pipeline_summary.png)
 
 **Docker Hub — both images pushed successfully:**
 
-![Docker Hub Images](./Screenshots/Screenshot%202026-04-21%20211308.png)
+![Docker Hub Images](./Screenshots/docker_repo.png)
 
 ---
 
@@ -315,22 +323,22 @@ The pipeline (`exp20.yml`) has 3 stages triggered automatically on every `git pu
 
 **Stage 1 — CI (runs in parallel)**
 
-| Job | What it does |
-|---|---|
-| `backend-test` | Runs pytest against a real MySQL service container |
-| `frontend-test` | Runs Vitest component tests |
+| Job             | What it does                                       |
+| --------------- | -------------------------------------------------- |
+| `backend-test`  | Runs pytest against a real MySQL service container |
+| `frontend-test` | Runs Vitest component tests                        |
 
 **Stage 2 — CD (runs only if tests pass)**
 
-| Job | Depends On | What it does |
-|---|---|---|
-| `backend-docker` | `backend-test` | Builds backend image and pushes to Docker Hub |
+| Job               | Depends On      | What it does                                   |
+| ----------------- | --------------- | ---------------------------------------------- |
+| `backend-docker`  | `backend-test`  | Builds backend image and pushes to Docker Hub  |
 | `frontend-docker` | `frontend-test` | Builds frontend image and pushes to Docker Hub |
 
 **Stage 3 — Deploy (runs only after both images are pushed)**
 
-| Job | Depends On | What it does |
-|---|---|---|
+| Job      | Depends On                           | What it does                                                                |
+| -------- | ------------------------------------ | --------------------------------------------------------------------------- |
 | `deploy` | `backend-docker` + `frontend-docker` | Pulls images, runs `docker compose up -d`, smoke tests `/register` endpoint |
 
 > If any test fails → Docker push is skipped → broken code never reaches Docker Hub.
