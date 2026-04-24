@@ -203,7 +203,11 @@ fireEvent.change(name, { target: { value: "John Doe" } });
 
 ![Coverage](Screenshots/4.png)
 
----
+### Github Actions
+
+![Actions](Screenshots/5.png)
+
+![Actions](Screenshots/6.png)
 
 # 📚 Learning Outcomes
 
